@@ -1,5 +1,12 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+<%= notice %>
 
-
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<% end %>
+Your Pragmatic Cart
+<br/>
+<% @cart.line_items.each do |item| %>
+<%= item.quantity %> items<%= item.product.title %>
+<%= link_to 'Destroy', item,confirm: 'Are you sure?',
+method: :delete %>
+<br/>
+<% end %>

@@ -1,5 +1,11 @@
 <h1>Store#index</h1>
 <p>Find me in app/views/store/index.html.erb</p>
+<% @cotilleo.each do |cotilla| %>
+
+
+
+<%end%>
+
 <% @results.each do |result|%>
 
 <%=result.title%><%= number_to_currency(result.price)%><%= button_to 'Add to Cart', line_items_path(product_id: result) %>
