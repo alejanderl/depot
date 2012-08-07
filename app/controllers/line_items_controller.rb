@@ -45,12 +45,13 @@ class LineItemsController < ApplicationController
     product = Product.find(params[:product_id])
     @line_item = @cart.line_items.build(:product_id => product.id)
     @line_item = @cart.add_product(product.id)
+    @line_item.price = product.price
     
 
     respond_to do |format|
       if @line_item.save
        
-        format.html { redirect_to @line_item.cart, notice: 'Line item was successfully created.' }
+        format.html { redirect_to store_url, notice: 'Line item was successfully created.' }
         format.json { render json: @line_item, status: :created, location: @line_item }
       else
         format.html { render action: "new" }
@@ -82,7 +83,9 @@ class LineItemsController < ApplicationController
     @line_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to cart_path(session[:cart_id]) }
+       format.html { redirect_to store_url }
+     
+      #format.html { redirect_to cart_path(session[:cart_id]) }
       format.json { head :no_content }
     end
   end
