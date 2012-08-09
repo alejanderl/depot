@@ -3,7 +3,7 @@
 <%= notice %>
 
 <% end %>
-<p>Find me in app/views/store/index.html.erb</p>
+
 <% @cotilleo.each do |cotilla| %>
 
 
@@ -11,10 +11,13 @@
 <%end%>
 
 <% @results.each do |result|%>
+<% product=result %>
+<%=result.title%>
+<%= number_to_currency(result.price)%>
+<%= button_to 'Add to Cart', line_items_path(product_id: result)%>
 
-<%=result.title%><%= number_to_currency(result.price)%><%= button_to 'Add to Cart', line_items_path(product_id: result) %>
-Por que le pasa el product_id:  asi en vez de pasarle product.product_id?. Es que el prod
-<br/>
+
+<%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %>
 
 
 <%end%>
