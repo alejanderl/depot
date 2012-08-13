@@ -9,12 +9,14 @@ class ProductsController < ApplicationController
       format.json { render json: @products }
     end
   end
+  
+
 
   # GET /products/1
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
-
+@cart = current_cart
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product }
@@ -78,6 +80,13 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to products_url }
       format.json { head :no_content }
+    end
+  end
+  
+  def who_bought
+    @product = Product.find(params[:id])
+    respond_to do |format|
+      format.atom
     end
   end
 end

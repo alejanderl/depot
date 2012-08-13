@@ -1,0 +1,15 @@
+<% item = line_item %>
+
+
+
+
+<% if line_item == @current_item %>
+ <tr id="current_item">
+ <% else %>
+ <tr>
+<% end %>
+
+
+<td><%= item.quantity %> items/ Single item price: <%= item.price %></td> <td>/ Product name:<%= item.product.title %> / Price: <%= item.total_price %> / </td>
+<td><%= button_to 'Destroy', item,method: :delete, remote: true %></td>
+</tr>
