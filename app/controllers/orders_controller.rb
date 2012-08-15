@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
+  skip_before_filter :authorize, only: [:new, :create]
   def index
    # @orders = Order.all
   @cart = current_cart
